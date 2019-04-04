@@ -26,6 +26,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 
 
-cat data | grep kubeadm | grep join >> join_data
+cat data | grep -A 1 kubeadm | grep -A 1  join >> join_data
+cat join_data | tr -d "\\" > join_data
+echo "--ignore-preflight-errors=all" >> join_data
+cat join_data | tr -d "\n" > join_data
 #rm data
 
